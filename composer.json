@@ -1,0 +1,29 @@
+{
+    "name": "dyms/app-todo-list",
+    "description": "App todo list para tareas",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    },
+    "require": {
+        "illuminate/database": "^8.36",
+        "twig/twig": "^3.3",
+        "vlucas/phpdotenv": "^5.3",
+        "siriusphp/validation": "^3.0",
+        "laminas/laminas-diactoros": "^2.5",
+        "aura/router": "^3.1"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "SistemasDYMS",
+            "email": "dairon9@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}

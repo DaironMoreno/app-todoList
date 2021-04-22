@@ -1,0 +1,24 @@
+{% extends "layout.twig"  %}
+{% block content %}
+
+{% include "utilidades/errores.twig" %}
+<section class="main_tareas">
+        {% if SesionID() %}
+                <a href="{{ '/usuarios' }}">Ir al DashBoard</a>
+        {% else %}
+        <section class="main_tareas__titulo">
+                <a href="{{ '/' }}" >Login</a>
+                <a href="{{ 'registro' }}" >Registro</a>
+        </section>
+        <div class="main_tareas__form">
+                <form method="post" action="{{ '/auth' }}">
+                {% include "utilidades/form.twig" %}  
+                </form>
+        <div>
+        {% endif %}
+      
+</section>
+    
+
+
+{% endblock %}

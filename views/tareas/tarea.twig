@@ -1,0 +1,73 @@
+{% extends "layout.twig"  %}
+{% block form %}
+    <div class="header_content__form">
+        <form method="post" action="{{ 'usuarios/tareas'  }}" >
+            <input name="titulo"    autocomplete="off"   type="text" required placeholder="Tarea"/>
+            <input name="contenido" autocomplete="off"   type="text" required placeholder="Contenido" />
+            <input name="enviar"    type="submit" value="Guardar">
+        </form>
+    </div>
+    <div class="header_content__options">
+        <p class="color_primary">Bienvenid@: {{ SesionID() }}</p>
+        <a href="/logaut">Cerrar Sesion <i class="fas fa-sign-out-alt"></i></a>
+        
+    </div>
+{% endblock %}
+{% block content %}
+<div class="main_tareas">
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tarea</th>
+                    <th>Contenido</th>
+                    <th>Completar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarea in tareas %}
+                    <tr class="table_content">
+                        <td>{{ tarea.id_tarea }}</td>
+                        <td>
+                                <span  {% if tarea.estado == "completa" %} style="text-decoration: line-through; color:green;   "  {% endif %}>
+                                    {{ tarea.titulo }}
+                                </span>
+                        </td>
+                        <td class="table_content__row">
+                            <span  {% if tarea.estado == "completa" %} style="text-decoration: line-through; color:green;   "  {% endif %}>
+                                {{ tarea.contenido }}
+                            </span>
+                           
+                        </td>
+                            
+                        {% if tarea.estado == "incompleta" %}
+                            <td > Completar Tarea?
+                            <a href="/usuarios/tareas/editar?id_tarea={{ tarea.id_tarea }}" style="color:red" title="Tarea Incompleta" onclick=" return confirm('deseas Completar la tarea');">
+                                <i class="far fa-square"></i>
+                            </a>
+                            
+                            </td>                                                 
+                        {% else  %}
+                            <td class="table_content__row"><i title="Tarea completa"style="color:green" class="far fa-check-circle"></i> Tarea Completada
+                             <p class="tooltip_tarea">Tarea completada el {{ tarea.updated_at }}</p>
+                           
+                            </td>
+
+                        {% endif %}
+                           <td>
+                            <a href="/usuarios/delete?id_tarea={{ tarea.id_tarea  }}" style="color:red;" title="Eliminar Tarea" onclick="return confirm('Desea Eliminar la tarea?')" >
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                             
+                           </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+
+</div>
+    
+
+
+{% endblock %}

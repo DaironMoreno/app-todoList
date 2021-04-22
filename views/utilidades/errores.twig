@@ -1,0 +1,12 @@
+{% if errores %}
+    	<div >
+    		{% for input,mensajes in errores %}
+    			{% for mensaje in mensajes %}
+    				<ul>
+    					<li><h2>{{ input }}: {{ mensaje }}</h2></li>
+    				</ul>
+    			{% endfor %}
+    		{% endfor %}	
+    	</div>
+
+{% endif %}
